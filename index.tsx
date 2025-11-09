@@ -90,6 +90,9 @@ const FluxIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height
 const MjIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>;
 const GeminiIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="7.5 4.21 12 6.81 16.5 4.21"></polyline><polyline points="7.5 19.79 7.5 14.6 3 12"></polyline><polyline points="21 12 16.5 14.6 16.5 19.79"></polyline><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>;
 
+// Landing Page Icons
+const MusicIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18V5l12-2v13" /><circle cx="6" cy="18" r="3" /><circle cx="18" cy="16" r="3" /></svg>;
+
 
 
 // --- ASSISTANT ICONS ---
@@ -157,6 +160,214 @@ interface AssistantSuggestion {
   isFavorite: boolean;
 }
 
+// Premium Portfolio Landing Page Component
+const LandingPage: React.FC<{ onGetStarted: () => void }> = ({ onGetStarted }) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    setIsVisible(true);
+    
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const navItems = [
+    { label: 'Home', isActive: true },
+    { label: 'About', isActive: false },
+    { label: 'Projects', isActive: false },
+    { label: 'Experience', isActive: false },
+    { label: 'Contact', isActive: false }
+  ];
+
+  const handleNavClick = () => {
+    onGetStarted();
+    setIsMobileMenuOpen(false);
+  };
+
+  const skills = ['AI Development', 'Creative Coding', 'Full-Stack', 'UI/UX Design'];
+  const stats = [
+    { label: 'Years Experience', value: '5+' },
+    { label: 'Projects Completed', value: '100+' },
+    { label: 'Happy Clients', value: '50+' }
+  ];
+
+  return (
+    <div className="landing-page portfolio-premium">
+      {/* Fixed Header */}
+      <header className={`portfolio-header ${scrollY > 50 ? 'scrolled' : ''}`}>
+        <div className="header-content">
+          <div className="logo">
+            <span className="logo-text">VD</span>
+          </div>
+          
+          <nav className="header-nav desktop-only">
+            {navItems.map(item => (
+              <button
+                key={item.label}
+                className={`header-nav-item ${item.isActive ? 'active' : ''}`}
+                onClick={handleNavClick}
+              >
+                {item.label}
+              </button>
+            ))}
+          </nav>
+          
+          <button className="header-cta desktop-only" onClick={onGetStarted}>
+            Let's Talk
+          </button>
+          
+          <button
+            type="button"
+            className="mobile-menu-toggle mobile-only"
+            onClick={() => setIsMobileMenuOpen(prev => !prev)}
+            aria-expanded={isMobileMenuOpen}
+          >
+            <span className={`hamburger ${isMobileMenuOpen ? 'active' : ''}`}>
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+          </button>
+        </div>
+      </header>
+
+      {/* Mobile Menu Overlay */}
+      <div className={`mobile-menu-overlay ${isMobileMenuOpen ? 'open' : ''}`}>
+        <nav className="mobile-menu-nav">
+          {navItems.map(item => (
+            <button
+              key={item.label}
+              className={`mobile-nav-item ${item.isActive ? 'active' : ''}`}
+              onClick={handleNavClick}
+            >
+              {item.label}
+            </button>
+          ))}
+          <button className="mobile-cta" onClick={onGetStarted}>
+            Let's Talk
+          </button>
+        </nav>
+      </div>
+
+      {/* Hero Section */}
+      <section className="portfolio-hero-premium">
+        <div className="hero-background-premium">
+          <div className="hero-image-premium"></div>
+          <div className="hero-gradient-overlay"></div>
+          <div className="hero-pattern"></div>
+        </div>
+
+        <div className="hero-container">
+          <div className={`hero-content-premium ${isVisible ? 'animate-in' : ''}`}>
+            {/* Profile Image */}
+            <div className="hero-profile-image">
+              <div className="profile-image-wrapper">
+                <img src="/mephoto2.png" alt="Vidmantas Portfolio" className="profile-img" />
+                <div className="profile-image-border"></div>
+              </div>
+            </div>
+
+            {/* Badge */}
+            <div className="hero-badge-premium">
+              <span className="badge-dot"></span>
+              Available for Freelance
+            </div>
+
+            {/* Main Content */}
+            <h1 className="hero-title-premium">
+              Hi, I'm <span className="gradient-text-premium">Vidmantas</span>
+            </h1>
+            
+            <h2 className="hero-subtitle-premium">
+              AI Creative Developer
+            </h2>
+            
+            <p className="hero-description-premium">
+              Crafting intelligent digital experiences at the intersection of artificial intelligence 
+              and creative technology. Based in London, working globally.
+            </p>
+
+            {/* Skills Pills */}
+            <div className="skills-pills">
+              {skills.map((skill, index) => (
+                <span key={index} className="skill-pill" style={{ animationDelay: `${index * 0.1}s` }}>
+                  {skill}
+                </span>
+              ))}
+            </div>
+
+            {/* CTA Buttons */}
+            <div className="hero-actions">
+              <button className="btn-primary-premium" onClick={onGetStarted}>
+                <span>View My Work</span>
+                <ArrowRightIcon />
+              </button>
+              <button className="btn-secondary-premium" onClick={onGetStarted}>
+                <span>Download CV</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                  <polyline points="7 10 12 15 17 10"/>
+                  <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+              </button>
+            </div>
+
+            {/* Social Links */}
+            <div className="social-links-premium">
+              <button className="social-link-premium" title="LinkedIn" onClick={onGetStarted}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                </svg>
+              </button>
+              <button className="social-link-premium" title="GitHub" onClick={onGetStarted}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                </svg>
+              </button>
+              <button className="social-link-premium" title="Twitter" onClick={onGetStarted}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
+                </svg>
+              </button>
+              <button className="social-link-premium" title="Instagram" onClick={onGetStarted}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          {/* Stats Section */}
+          <div className={`hero-stats-premium ${isVisible ? 'animate-in' : ''}`}>
+            {stats.map((stat, index) => (
+              <div key={index} className="stat-card" style={{ animationDelay: `${0.3 + index * 0.1}s` }}>
+                <div className="stat-value">{stat.value}</div>
+                <div className="stat-label">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <div className="scroll-indicator">
+          <span>Scroll to explore</span>
+          <div className="scroll-arrow">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M12 5v14M19 12l-7 7-7-7"/>
+            </svg>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+};
+
 const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState<Tab>(Tab.EDIT);
   const [prompt, setPrompt] = useState<string>('');
@@ -205,6 +416,12 @@ const App: React.FC = () => {
   // Fullscreen view
   const [fullscreenImage, setFullscreenImage] = useState<string | null>(null);
 
+  // Landing page state
+  const [showLandingPage, setShowLandingPage] = useState(true);
+
+  // Image-dependent tabs that should only be available when an image is present
+  const imageRequiredTabs = [Tab.EXPAND, Tab.ASSISTANT, Tab.UPSCALE];
+
   // Upscale state
   const [upscaleScale, setUpscaleScale] = useState<number>(2);
   const [upscaleFaceEnhance, setUpscaleFaceEnhance] = useState<boolean>(false);
@@ -219,7 +436,7 @@ const App: React.FC = () => {
 
   // Edit Tab Mode State
   const [editMode, setEditMode] = useState<'text-to-image' | 'image-to-image'>('text-to-image');
-  
+
   // Text-to-Image State (for Edit tab)
   const [textToImagePrompt, setTextToImagePrompt] = useState<string>('');
   const [textToImageAspectRatio, setTextToImageAspectRatio] = useState<'1:1' | '9:16' | '16:9' | '4:3' | '3:4'>('1:1');
@@ -273,6 +490,34 @@ const App: React.FC = () => {
   const ai = useMemo(() => new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY as string }), []);
 
   const currentImage = useMemo(() => history[historyIndex]?.imageDataUrl, [history, historyIndex]);
+
+  // Auto-switch away from image-dependent tabs when no image is present
+  useEffect(() => {
+    if (!currentImage && imageRequiredTabs.includes(activeTab)) {
+      // Switch to Edit tab as default when image is removed
+      setActiveTab(Tab.EDIT);
+    }
+  }, [currentImage, activeTab, imageRequiredTabs]);
+
+  // Helper function to handle tab switching with image clearing for generation tabs
+  const handleTabSwitch = useCallback((tab: Tab) => {
+    // Clear image when switching to generation-focused tabs (MJ, Flux)
+    if ((tab === Tab.MJ || tab === Tab.FLUX) && currentImage) {
+      // Clear the current image and reset to blank state
+      setHistory([]);
+      setHistoryIndex(-1);
+      setMaskDataUrl(null);
+      setReferenceImages([]);
+      setPromptHistory([]);
+      setStoryTheme(null);
+      setStoryMessages([]);
+      setGeneratedVideoUrl(null);
+      setAssistantSuggestions(null);
+      setMjGeneratedImages([]);
+      setFluxInputImage(null);
+    }
+    setActiveTab(tab);
+  }, [currentImage]);
 
   // --- Actions ---
   const addToHistory = useCallback((newImage: string, mask: string | null = maskDataUrl) => {
@@ -1539,7 +1784,7 @@ const App: React.FC = () => {
     try {
       // Create a detailed prompt with style and aspect ratio guidance
       let enhancedPrompt = textToImagePrompt;
-      
+
       // Add style guidance
       if (textToImageStyle === 'photographic') {
         enhancedPrompt += ', photorealistic, high quality, detailed';
@@ -1572,7 +1817,7 @@ const App: React.FC = () => {
 
       if (imageOutputPart && imageOutputPart.inlineData) {
         const newImageData = `data:${imageOutputPart.inlineData.mimeType};base64,${imageOutputPart.inlineData.data}`;
-        
+
         // Set as new image (replace history)
         setHistory([{ imageDataUrl: newImageData, maskDataUrl: null }]);
         setHistoryIndex(0);
@@ -1582,12 +1827,12 @@ const App: React.FC = () => {
         setStoryTheme(null);
         setStoryMessages([]);
         setGeneratedVideoUrl(null);
-        
+
         // Add to prompt history
         if (textToImagePrompt && !promptHistory.includes(textToImagePrompt)) {
           setPromptHistory(prev => [textToImagePrompt, ...prev].slice(0, 10));
         }
-        
+
         console.log('Text-to-image generated successfully');
       } else {
         const textResponse = response?.text?.trim();
@@ -1614,18 +1859,18 @@ const App: React.FC = () => {
         return (
           <div className="control-group">
             <h2>Edit</h2>
-            
+
             {/* Mode Selection */}
             <div className="control-subgroup">
               <div className="segmented-control">
-                <button 
-                  className={`segmented-control-btn ${editMode === 'text-to-image' ? 'active' : ''}`} 
+                <button
+                  className={`segmented-control-btn ${editMode === 'text-to-image' ? 'active' : ''}`}
                   onClick={() => setEditMode('text-to-image')}
                 >
                   Text to Image
                 </button>
-                <button 
-                  className={`segmented-control-btn ${editMode === 'image-to-image' ? 'active' : ''}`} 
+                <button
+                  className={`segmented-control-btn ${editMode === 'image-to-image' ? 'active' : ''}`}
                   onClick={() => setEditMode('image-to-image')}
                 >
                   Image to Image
@@ -1637,7 +1882,7 @@ const App: React.FC = () => {
               // Text-to-Image Mode
               <>
                 <p className="prompt-context-info">Generate images from text descriptions using AI.</p>
-                
+
                 <div className="control-subgroup">
                   <label htmlFor="text-to-image-prompt">Prompt</label>
                   <textarea
@@ -1682,17 +1927,17 @@ const App: React.FC = () => {
                   // No image - show upload option
                   <>
                     <p className="prompt-context-info">Upload an image to start editing, or drag and drop a file.</p>
-                    
+
                     <div className="control-subgroup">
                       <button className="btn btn-primary" onClick={() => document.getElementById('edit-upload-input')?.click()}>
                         <UploadIcon /> Upload Image
                       </button>
-                      <input 
-                        id="edit-upload-input" 
-                        type="file" 
-                        accept="image/jpeg,image/png,image/webp,image/gif,image/bmp,image/tiff" 
-                        onChange={(e) => e.target.files && handleImageUpload(e.target.files[0])} 
-                        style={{ display: 'none' }} 
+                      <input
+                        id="edit-upload-input"
+                        type="file"
+                        accept="image/jpeg,image/png,image/webp,image/gif,image/bmp,image/tiff"
+                        onChange={(e) => e.target.files && handleImageUpload(e.target.files[0])}
+                        style={{ display: 'none' }}
                       />
                     </div>
                   </>
@@ -1700,32 +1945,32 @@ const App: React.FC = () => {
                   // Image present - show editing interface
                   <>
                     <p className="prompt-context-info">Describe the changes you want to make to the current image. You can transfer objects from reference images by describing them in your prompt.</p>
-                    
+
                     <div className="prompt-container">
-                  <textarea
-                    className="prompt-textarea"
-                    placeholder="e.g., Add the red car from the reference image to the street, or Transfer the flowers from the reference to the garden..."
-                    value={prompt}
-                    onChange={(e) => setPrompt(e.target.value)}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter' && !e.shiftKey) {
-                        e.preventDefault();
-                        generateImage(prompt);
-                      }
-                    }}
-                  />
-                  <div className="prompt-buttons-container">
-                    <button className="btn-prompt-action btn-enhance-prompt" title="Enhance Prompt" onClick={enhancePrompt} disabled={isLoading || !prompt}>
-                      {isLoading ? <div className="spinner-small" /> : <SparklesIcon />}
-                    </button>
-                    <button className={`btn-prompt-action btn-voice-prompt ${isListening ? 'listening' : ''}`} title="Voice Input" onClick={toggleVoiceInput}>
-                      <MicIcon />
-                    </button>
-                    <button className="btn-prompt-action btn-clear-prompt" title="Clear Prompt" onClick={() => setPrompt('')} disabled={!prompt}>
-                      <ClearIcon />
-                    </button>
-                  </div>
-                </div>
+                      <textarea
+                        className="prompt-textarea"
+                        placeholder="e.g., Add the red car from the reference image to the street, or Transfer the flowers from the reference to the garden..."
+                        value={prompt}
+                        onChange={(e) => setPrompt(e.target.value)}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' && !e.shiftKey) {
+                            e.preventDefault();
+                            generateImage(prompt);
+                          }
+                        }}
+                      />
+                      <div className="prompt-buttons-container">
+                        <button className="btn-prompt-action btn-enhance-prompt" title="Enhance Prompt" onClick={enhancePrompt} disabled={isLoading || !prompt}>
+                          {isLoading ? <div className="spinner-small" /> : <SparklesIcon />}
+                        </button>
+                        <button className={`btn-prompt-action btn-voice-prompt ${isListening ? 'listening' : ''}`} title="Voice Input" onClick={toggleVoiceInput}>
+                          <MicIcon />
+                        </button>
+                        <button className="btn-prompt-action btn-clear-prompt" title="Clear Prompt" onClick={() => setPrompt('')} disabled={!prompt}>
+                          <ClearIcon />
+                        </button>
+                      </div>
+                    </div>
 
                     {/* Object Reference Images Section */}
                     <div className="control-subgroup">
@@ -1767,21 +2012,21 @@ const App: React.FC = () => {
                         </p>
                       )}
                     </div>
-                
-                {promptHistory.length > 0 && (
-                  <div className="prompt-history">
-                    <div className="prompt-history-header">
-                      <h4>History</h4>
-                      <button className="btn-link" onClick={() => setPromptHistory([])}>Clear</button>
-                    </div>
-                    <div className="prompt-history-log">
-                      {promptHistory.map((p, i) => (
-                        <div key={i} className="prompt-history-item" onClick={() => setPrompt(p)} title="Click to reuse">{p}</div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-                
+
+                    {promptHistory.length > 0 && (
+                      <div className="prompt-history">
+                        <div className="prompt-history-header">
+                          <h4>History</h4>
+                          <button className="btn-link" onClick={() => setPromptHistory([])}>Clear</button>
+                        </div>
+                        <div className="prompt-history-log">
+                          {promptHistory.map((p, i) => (
+                            <div key={i} className="prompt-history-item" onClick={() => setPrompt(p)} title="Click to reuse">{p}</div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
                     <button className="btn btn-primary" onClick={() => generateImage(prompt)} disabled={isLoading || !prompt}>
                       {isLoading ? <><div className="spinner-small" /> Generating...</> : 'Generate'}
                     </button>
@@ -1800,114 +2045,208 @@ const App: React.FC = () => {
         return (
           <div className="control-group">
             <h2>Generative Expand</h2>
-            <p className="prompt-context-info">Expand the image canvas and let AI fill in the new areas. Select the direction(s) to expand, then click generate.</p>
 
-            <div className="expand-controls">
-              <div className="expand-grid">
-                <div /> {/* Top-left corner spacer */}
-                <button
-                  className={`expand-direction-btn ${expandDirections.top ? 'active' : ''}`}
-                  onClick={() => toggleDirection('top')}
-                  title="Expand Top"
-                >
-                  <ArrowUpIcon />
-                </button>
-                <div />
+            {!currentImage ? (
+              // No image state
+              <>
+                <p className="prompt-context-info">Upload an image to expand its canvas with AI-generated content.</p>
 
-                <button
-                  className={`expand-direction-btn ${expandDirections.left ? 'active' : ''}`}
-                  onClick={() => toggleDirection('left')}
-                  title="Expand Left"
-                >
-                  <ArrowLeftIcon />
-                </button>
-                <div className="expand-grid-center">
-                  <ImageIcon />
+                <div className="no-image-state">
+                  <div className="no-image-icon">
+                    <ExpandIcon />
+                  </div>
+                  <h3>No Image to Expand</h3>
+                  <p>You need to upload an image first before you can expand it.</p>
+
+                  <div className="no-image-actions">
+                    <button className="btn btn-primary" onClick={() => document.getElementById('expand-upload-input')?.click()}>
+                      <UploadIcon /> Upload Image
+                    </button>
+                    <input
+                      id="expand-upload-input"
+                      type="file"
+                      accept="image/jpeg,image/png,image/webp,image/gif,image/bmp,image/tiff"
+                      onChange={(e) => e.target.files && handleImageUpload(e.target.files[0])}
+                      style={{ display: 'none' }}
+                    />
+
+                    <div className="quick-start-options">
+                      <p>Or generate an image first:</p>
+                      <div className="quick-start-buttons">
+                        <button className="btn btn-secondary" onClick={() => setActiveTab(Tab.EDIT)}>
+                          <EditIcon /> Text to Image
+                        </button>
+                        <button className="btn btn-secondary" onClick={() => handleTabSwitch(Tab.FLUX)}>
+                          <FluxIcon /> Flux AI
+                        </button>
+                        <button className="btn btn-secondary" onClick={() => handleTabSwitch(Tab.MJ)}>
+                          <MjIcon /> Midjourney
+                        </button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <button
-                  className={`expand-direction-btn ${expandDirections.right ? 'active' : ''}`}
-                  onClick={() => toggleDirection('right')}
-                  title="Expand Right"
-                >
-                  <ArrowRightIcon />
+              </>
+            ) : (
+              // Image present - show expand controls
+              <>
+                <p className="prompt-context-info">Expand the image canvas and let AI fill in the new areas. Select the direction(s) to expand, then click generate.</p>
+
+                <div className="expand-controls">
+                  <div className="expand-grid">
+                    <div /> {/* Top-left corner spacer */}
+                    <button
+                      className={`expand-direction-btn ${expandDirections.top ? 'active' : ''}`}
+                      onClick={() => toggleDirection('top')}
+                      title="Expand Top"
+                    >
+                      <ArrowUpIcon />
+                    </button>
+                    <div />
+
+                    <button
+                      className={`expand-direction-btn ${expandDirections.left ? 'active' : ''}`}
+                      onClick={() => toggleDirection('left')}
+                      title="Expand Left"
+                    >
+                      <ArrowLeftIcon />
+                    </button>
+                    <div className="expand-grid-center">
+                      <ImageIcon />
+                    </div>
+                    <button
+                      className={`expand-direction-btn ${expandDirections.right ? 'active' : ''}`}
+                      onClick={() => toggleDirection('right')}
+                      title="Expand Right"
+                    >
+                      <ArrowRightIcon />
+                    </button>
+
+                    <div />
+                    <button
+                      className={`expand-direction-btn ${expandDirections.bottom ? 'active' : ''}`}
+                      onClick={() => toggleDirection('bottom')}
+                      title="Expand Bottom"
+                    >
+                      <ArrowDownIcon />
+                    </button>
+                    <div />
+                  </div>
+                </div>
+
+                <div className="expand-prompt-group">
+                  <div className="control-subgroup">
+                    <label htmlFor="expand-prompt">Prompt (Optional)</label>
+                    <textarea
+                      id="expand-prompt"
+                      className="prompt-textarea"
+                      placeholder="Describe what to add, e.g., 'a field of wildflowers, a starry night sky'"
+                      value={expandPrompt}
+                      onChange={(e) => setExpandPrompt(e.target.value)}
+                    />
+                  </div>
+                  <div className="control-subgroup">
+                    <label htmlFor="expand-negative-prompt">Negative Prompt (Optional)</label>
+                    <textarea
+                      id="expand-negative-prompt"
+                      className="prompt-textarea"
+                      placeholder="Describe what to avoid, e.g., 'buildings, people, text'"
+                      value={expandNegativePrompt}
+                      onChange={(e) => setExpandNegativePrompt(e.target.value)}
+                    />
+                  </div>
+                </div>
+
+                <button className="btn btn-primary" onClick={handleGenerativeExpand} disabled={isLoading || noDirectionSelected}>
+                  {isLoading ? <><div className="spinner-small" /> Expanding...</> : 'Generate Expand'}
                 </button>
-
-                <div />
-                <button
-                  className={`expand-direction-btn ${expandDirections.bottom ? 'active' : ''}`}
-                  onClick={() => toggleDirection('bottom')}
-                  title="Expand Bottom"
-                >
-                  <ArrowDownIcon />
-                </button>
-                <div />
-              </div>
-            </div>
-
-            <div className="expand-prompt-group">
-              <div className="control-subgroup">
-                <label htmlFor="expand-prompt">Prompt (Optional)</label>
-                <textarea
-                  id="expand-prompt"
-                  className="prompt-textarea"
-                  placeholder="Describe what to add, e.g., 'a field of wildflowers, a starry night sky'"
-                  value={expandPrompt}
-                  onChange={(e) => setExpandPrompt(e.target.value)}
-                />
-              </div>
-              <div className="control-subgroup">
-                <label htmlFor="expand-negative-prompt">Negative Prompt (Optional)</label>
-                <textarea
-                  id="expand-negative-prompt"
-                  className="prompt-textarea"
-                  placeholder="Describe what to avoid, e.g., 'buildings, people, text'"
-                  value={expandNegativePrompt}
-                  onChange={(e) => setExpandNegativePrompt(e.target.value)}
-                />
-              </div>
-            </div>
-
-            <button className="btn btn-primary" onClick={handleGenerativeExpand} disabled={isLoading || noDirectionSelected}>
-              {isLoading ? <><div className="spinner-small" /> Expanding...</> : 'Generate Expand'}
-            </button>
+              </>
+            )}
           </div>
         );
       case Tab.UPSCALE:
         return (
           <div className="control-group">
-            <h2>Nano Banana Upscale</h2>
-            <p className="prompt-context-info">Enhance your image resolution. Upscale up to 4x with optional face enhancement for portraits.</p>
+            <h2>Upscale Image</h2>
 
-            <div className="control-subgroup">
-              <label>Scale Factor</label>
-              <div className="segmented-control">
-                {[2, 3, 4].map(scale => (
-                  <button
-                    key={scale}
-                    className={`segmented-control-btn ${upscaleScale === scale ? 'active' : ''}`}
-                    onClick={() => setUpscaleScale(scale)}
-                  >
-                    {scale}x
-                  </button>
-                ))}
-              </div>
-            </div>
+            {!currentImage ? (
+              // No image state
+              <>
+                <p className="prompt-context-info">Upload an image to enhance its resolution with AI upscaling.</p>
 
-            <div className="control-subgroup">
-              <label className="checkbox-label">
-                <input
-                  type="checkbox"
-                  checked={upscaleFaceEnhance}
-                  onChange={(e) => setUpscaleFaceEnhance(e.target.checked)}
-                />
-                <span>Enhance Faces</span>
-              </label>
-              <p className="prompt-context-info" style={{ marginTop: '4px' }}>Good for portraits and photos with people. May produce unnatural results on other types of images.</p>
-            </div>
+                <div className="no-image-state">
+                  <div className="no-image-icon">
+                    <UpscaleIcon />
+                  </div>
+                  <h3>No Image to Upscale</h3>
+                  <p>You need to upload an image first before you can upscale it.</p>
 
-            <button className="btn btn-primary" onClick={handleUpscale} disabled={isLoading}>
-              {isLoading ? <><div className="spinner-small" /> Upscaling...</> : 'Upscale Image'}
-            </button>
+                  <div className="no-image-actions">
+                    <button className="btn btn-primary" onClick={() => document.getElementById('upscale-upload-input')?.click()}>
+                      <UploadIcon /> Upload Image
+                    </button>
+                    <input
+                      id="upscale-upload-input"
+                      type="file"
+                      accept="image/jpeg,image/png,image/webp,image/gif,image/bmp,image/tiff"
+                      onChange={(e) => e.target.files && handleImageUpload(e.target.files[0])}
+                      style={{ display: 'none' }}
+                    />
+
+                    <div className="quick-start-options">
+                      <p>Or generate an image first:</p>
+                      <div className="quick-start-buttons">
+                        <button className="btn btn-secondary" onClick={() => setActiveTab(Tab.EDIT)}>
+                          <EditIcon /> Text to Image
+                        </button>
+                        <button className="btn btn-secondary" onClick={() => handleTabSwitch(Tab.FLUX)}>
+                          <FluxIcon /> Flux AI
+                        </button>
+                        <button className="btn btn-secondary" onClick={() => handleTabSwitch(Tab.MJ)}>
+                          <MjIcon /> Midjourney
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </>
+            ) : (
+              // Image present - show upscale controls
+              <>
+                <p className="prompt-context-info">Enhance your image resolution. Upscale up to 4x with optional face enhancement for portraits.</p>
+
+                <div className="control-subgroup">
+                  <label>Scale Factor</label>
+                  <div className="segmented-control">
+                    {[2, 3, 4].map(scale => (
+                      <button
+                        key={scale}
+                        className={`segmented-control-btn ${upscaleScale === scale ? 'active' : ''}`}
+                        onClick={() => setUpscaleScale(scale)}
+                      >
+                        {scale}x
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="control-subgroup">
+                  <label className="checkbox-label">
+                    <input
+                      type="checkbox"
+                      checked={upscaleFaceEnhance}
+                      onChange={(e) => setUpscaleFaceEnhance(e.target.checked)}
+                    />
+                    <span>Enhance Faces</span>
+                  </label>
+                  <p className="prompt-context-info" style={{ marginTop: '4px' }}>Good for portraits and photos with people. May produce unnatural results on other types of images.</p>
+                </div>
+
+                <button className="btn btn-primary" onClick={handleUpscale} disabled={isLoading}>
+                  {isLoading ? <><div className="spinner-small" /> Upscaling...</> : 'Upscale Image'}
+                </button>
+              </>
+            )}
           </div>
         );
       case Tab.FLUX:
@@ -2051,12 +2390,12 @@ const App: React.FC = () => {
                     <button className="btn btn-secondary" onClick={() => document.getElementById('mj-image-input')?.click()}>
                       <UploadIcon /> Upload Image
                     </button>
-                    <input 
-                      id="mj-image-input" 
-                      type="file" 
-                      accept="image/jpeg,image/png,image/webp,image/gif,image/bmp,image/tiff" 
-                      onChange={(e) => e.target.files && handleMjImageUpload(e.target.files[0])} 
-                      style={{ display: 'none' }} 
+                    <input
+                      id="mj-image-input"
+                      type="file"
+                      accept="image/jpeg,image/png,image/webp,image/gif,image/bmp,image/tiff"
+                      onChange={(e) => e.target.files && handleMjImageUpload(e.target.files[0])}
+                      style={{ display: 'none' }}
                     />
                   </div>
                 )}
@@ -2181,21 +2520,21 @@ const App: React.FC = () => {
                 <div className="mj-generated-images-grid">
                   {mjGeneratedImages.map((img, index) => (
                     <div key={img.id} className="mj-generated-image-item">
-                      <img 
-                        src={img.url} 
-                        alt={`Generated ${index + 1}`} 
+                      <img
+                        src={img.url}
+                        alt={`Generated ${index + 1}`}
                         onClick={() => setFullscreenImage(img.url)}
                         style={{ cursor: 'pointer' }}
                       />
                       <div className="mj-generated-image-actions">
-                        <button 
-                          className="btn btn-small" 
+                        <button
+                          className="btn btn-small"
                           onClick={() => setFullscreenImage(img.url)}
                         >
                           View Full Size
                         </button>
-                        <button 
-                          className="btn btn-small" 
+                        <button
+                          className="btn btn-small"
                           onClick={() => {
                             // Set as current image
                             fetch(img.url)
@@ -2307,6 +2646,51 @@ const App: React.FC = () => {
           </div>
         );
       case Tab.ASSISTANT:
+        if (!currentImage) {
+          return (
+            <div className="control-group">
+              <h2>AI Assistant</h2>
+              <p className="prompt-context-info">Upload an image to get AI-powered editing suggestions and creative ideas.</p>
+
+              <div className="no-image-state">
+                <div className="no-image-icon">
+                  <AssistantIcon />
+                </div>
+                <h3>No Image to Analyze</h3>
+                <p>You need to upload an image first before the AI can provide suggestions.</p>
+
+                <div className="no-image-actions">
+                  <button className="btn btn-primary" onClick={() => document.getElementById('assistant-upload-input')?.click()}>
+                    <UploadIcon /> Upload Image
+                  </button>
+                  <input
+                    id="assistant-upload-input"
+                    type="file"
+                    accept="image/jpeg,image/png,image/webp,image/gif,image/bmp,image/tiff"
+                    onChange={(e) => e.target.files && handleImageUpload(e.target.files[0])}
+                    style={{ display: 'none' }}
+                  />
+
+                  <div className="quick-start-options">
+                    <p>Or generate an image first:</p>
+                    <div className="quick-start-buttons">
+                      <button className="btn btn-secondary" onClick={() => setActiveTab(Tab.EDIT)}>
+                        <EditIcon /> Text to Image
+                      </button>
+                      <button className="btn btn-secondary" onClick={() => handleTabSwitch(Tab.FLUX)}>
+                        <FluxIcon /> Flux AI
+                      </button>
+                      <button className="btn btn-secondary" onClick={() => handleTabSwitch(Tab.MJ)}>
+                        <MjIcon /> Midjourney
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        }
+
         if (isAssistantLoading) {
           return <div className="loader"><div className="spinner" /> <p>Analyzing image...</p></div>;
         }
@@ -2510,6 +2894,11 @@ const App: React.FC = () => {
     }
   };
 
+  // Show landing page first
+  if (showLandingPage) {
+    return <LandingPage onGetStarted={() => setShowLandingPage(false)} />;
+  }
+
   if (!currentImage && !canWorkWithoutImage) {
     return <UploadView onImageUpload={handleImageUpload} onStartWithoutImage={handleStartWithoutImage} />;
   }
@@ -2536,16 +2925,23 @@ const App: React.FC = () => {
       <div className="app-layout">
         <nav className="main-nav">
           <button className={`tab-button ${activeTab === Tab.EDIT ? 'active' : ''}`} onClick={() => setActiveTab(Tab.EDIT)}><EditIcon /><span>Edit</span></button>
-          <button className={`tab-button ${activeTab === Tab.EXPAND ? 'active' : ''}`} onClick={() => setActiveTab(Tab.EXPAND)}><ExpandIcon /><span>Expand</span></button>
+
+          {/* Image-dependent tabs - only show when image is present */}
+          {currentImage && (
+            <>
+              <button className={`tab-button ${activeTab === Tab.EXPAND ? 'active' : ''}`} onClick={() => setActiveTab(Tab.EXPAND)}><ExpandIcon /><span>Expand</span></button>
+              <button className={`tab-button ${activeTab === Tab.ASSISTANT ? 'active' : ''}`} onClick={() => setActiveTab(Tab.ASSISTANT)}><AssistantIcon /><span>Assistant</span></button>
+              <button className={`tab-button ${activeTab === Tab.UPSCALE ? 'active' : ''}`} onClick={() => setActiveTab(Tab.UPSCALE)}><UpscaleIcon /><span>Upscale</span></button>
+            </>
+          )}
+
           <button className={`tab-button ${activeTab === Tab.STORY ? 'active' : ''}`} onClick={() => setActiveTab(Tab.STORY)}><BookOpenIcon /><span>Story</span></button>
-          <button className={`tab-button ${activeTab === Tab.ASSISTANT ? 'active' : ''}`} onClick={() => setActiveTab(Tab.ASSISTANT)}><AssistantIcon /><span>Assistant</span></button>
           <button className={`tab-button ${activeTab === Tab.FAVORITES ? 'active' : ''}`} onClick={() => setActiveTab(Tab.FAVORITES)}>
             <StarIcon filled={activeTab === Tab.FAVORITES} />
             <span>Favorites</span>
           </button>
-          <button className={`tab-button ${activeTab === Tab.UPSCALE ? 'active' : ''}`} onClick={() => setActiveTab(Tab.UPSCALE)}><UpscaleIcon /><span>Upscale</span></button>
-          <button className={`tab-button ${activeTab === Tab.FLUX ? 'active' : ''}`} onClick={() => setActiveTab(Tab.FLUX)}><FluxIcon /><span>Flux</span></button>
-          <button className={`tab-button ${activeTab === Tab.MJ ? 'active' : ''}`} onClick={() => setActiveTab(Tab.MJ)}><MjIcon /><span>MJ</span></button>
+          <button className={`tab-button ${activeTab === Tab.FLUX ? 'active' : ''}`} onClick={() => handleTabSwitch(Tab.FLUX)}><FluxIcon /><span>Flux</span></button>
+          <button className={`tab-button ${activeTab === Tab.MJ ? 'active' : ''}`} onClick={() => handleTabSwitch(Tab.MJ)}><MjIcon /><span>MJ</span></button>
           <button className={`tab-button ${activeTab === Tab.VEO ? 'active' : ''}`} onClick={() => setActiveTab(Tab.VEO)}><VideoIcon /><span>VEO</span></button>
         </nav>
         <aside className="control-panel">
@@ -2633,13 +3029,13 @@ const UploadView: React.FC<{ onImageUpload: (file: File) => void, onStartWithout
           <p className="hero-description">
             Generate images from text • Edit with AI • Transfer objects • Create videos • Expand canvases • Upscale resolution
           </p>
-          
+
           <div className="hero-enter-container">
             <button className="btn-enter" onClick={() => onStartWithoutImage(Tab.EDIT)}>
               ENTER
             </button>
           </div>
-          
+
           <div className="hero-features">
             <div className="feature-pill">✨ Text-to-Image</div>
             <div className="feature-pill">🎨 Object Transfer</div>
@@ -2647,7 +3043,7 @@ const UploadView: React.FC<{ onImageUpload: (file: File) => void, onStartWithout
             <div className="feature-pill">🔍 AI Upscaling</div>
           </div>
         </div>
-        
+
         {/* Hidden file input for drag and drop */}
         <input ref={fileInputRef} type="file" accept="image/jpeg,image/png,image/webp,image/gif,image/bmp,image/tiff" onChange={handleFileSelect} style={{ display: 'none' }} />
       </div>
