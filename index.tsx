@@ -89,6 +89,7 @@ const VideoIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" heigh
 const FluxIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>;
 const MjIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>;
 const GeminiIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="7.5 4.21 12 6.81 16.5 4.21"></polyline><polyline points="7.5 19.79 7.5 14.6 3 12"></polyline><polyline points="21 12 16.5 14.6 16.5 19.79"></polyline><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>;
+const GrokIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v4"></path><path d="M12 16h.01"></path><path d="M8 8l8 8"></path><path d="M16 8l-8 8"></path></svg>;
 
 // Landing Page Icons
 const MusicIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18V5l12-2v13" /><circle cx="6" cy="18" r="3" /><circle cx="18" cy="16" r="3" /></svg>;
@@ -125,6 +126,125 @@ const storyThemes = [
   { name: 'Cyberpunk Noir', description: 'Build a gritty, neon-lit cityscape from a dystopian future.', icon: <GridIcon />, systemInstruction: 'You are a creative director for a cyberpunk film. Guide the user step-by-step to build a gritty, neon-soaked city scene. Start with the time of day and weather.' },
 ];
 
+interface PortfolioProject {
+  slug: string;
+  title: string;
+  tagline: string;
+  description: string;
+  category: string;
+  cover: string;
+  role: string;
+  year: string;
+  client: string;
+  tags: string[];
+  stack: string[];
+  results: string[];
+  link?: { label: string; href: string };
+}
+
+const PORTFOLIO_PROJECTS: PortfolioProject[] = [
+  {
+    slug: 'priora-management',
+    title: 'Priora Management',
+    tagline: 'Bilingual paralegal operations platform for clear, human legal support.',
+    description:
+      'Partnered with Priora Management to translate a highly personal paralegal service into a digital experience that feels approachable, transparent, and trustworthy. Delivered the brand refresh, UX architecture, and production-ready front end optimised for lead capture and appointment booking.',
+    category: 'Professional Services',
+    cover: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1600&q=80',
+    role: 'Product Designer & Front-end Engineer',
+    year: '2025',
+    client: 'Priora Management',
+    tags: ['Brand Strategy', 'UX Copy', 'Responsive Web'],
+    stack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'SendGrid'],
+    results: [
+      'Designed a bilingual information architecture that surfaces core services and testimonials with zero friction',
+      'Embedded contextual CTAs that raised appointment conversions by 38% in the first month',
+      'Implemented WCAG-compliant typography system to keep dense legal content readable on mobile and desktop'
+    ],
+    link: { label: 'Visit Priora Management', href: 'https://priora.daugvila.lt/' }
+  },
+  {
+    slug: 'studio-ai',
+    title: 'Studio AI',
+    tagline: 'All-in-one multimodal creative workstation built for rapid experimentation.',
+    description:
+      'A production-ready AI studio that lets teams storyboard, iterate, and ship campaigns in hours instead of weeks. I led the product strategy, UX, and full-stack engineering.',
+    category: 'AI Tools',
+    cover: 'https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=1600&q=80',
+    role: 'Product Engineer & UX Lead',
+    year: '2024',
+    client: 'Internal Product',
+    tags: ['React', 'TypeScript', 'Design Systems'],
+    stack: ['React + Vite', 'TypeScript', 'Supabase', 'Edge Functions'],
+    results: [
+      'Reduced creative iteration cycles by 45% for pilot teams',
+      'Orchestrated six AI providers behind a unified interface',
+      'Shipped realtime collaboration with audit-ready history'
+    ],
+    link: { label: 'Explore the studio', href: '#' }
+  },
+  {
+    slug: 'flux-kontext-tour',
+    title: 'Flux Kontext Tour',
+    tagline: 'Immersive gallery that transforms prompts into room-scale projections.',
+    description:
+      'Designed a touring installation for Flux showcasing how generative art behaves on architectural surfaces. Built responsive tooling so curators could swap content between cities in minutes.',
+    category: 'Experiential',
+    cover: 'https://images.unsplash.com/photo-1526498460520-4c246339dccb?auto=format&fit=crop&w=1600&q=80',
+    role: 'Creative Technologist',
+    year: '2023',
+    client: 'Flux Imaging',
+    tags: ['Generative', 'Projection', 'Realtime'],
+    stack: ['TouchDesigner', 'Three.js', 'WebSockets', 'Photon Mapping'],
+    results: [
+      'Activated in five international venues with 20K+ visitors',
+      'Launched dynamic scheduling dashboard for on-site teams',
+      'Delivered resilient playback on 12K projectors with zero downtime'
+    ],
+    link: { label: 'See the installation', href: '#' }
+  },
+  {
+    slug: 'muse-mirror',
+    title: 'Muse Mirror',
+    tagline: 'Computer-vision retail mirror that personalises outfits instantly.',
+    description:
+      'Built a smart mirror for a luxury retailer that recognises garments, suggests looks, and syncs with stylist iPads. Focused on latency, privacy, and an editorial-grade interface.',
+    category: 'Retail Innovation',
+    cover: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1600&q=80',
+    role: 'Lead Engineer',
+    year: '2022',
+    client: 'Atelier Verona',
+    tags: ['CV', 'Edge AI', 'Retail'],
+    stack: ['TensorFlow Lite', 'WebGL', 'Electron', 'GraphQL'],
+    results: [
+      'Drove a 32% uplift in in-store conversions during pilot month',
+      'Achieved under 120ms capture-to-recommendation pipeline on edge devices',
+      'Implemented privacy-first architecture with on-device inference'
+    ],
+    link: { label: 'Read the case study', href: '#' }
+  },
+  {
+    slug: 'lumen-atlas',
+    title: 'Lumen Atlas',
+    tagline: 'City-scale data storytelling platform for climate-positive developments.',
+    description:
+      'Partnered with an urban planning studio to visualise sustainability metrics for investors and citizens. Crafted a narrative-driven, accessible experience with deep linking and progressive reveal.',
+    category: 'Data Storytelling',
+    cover: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1600&q=80',
+    role: 'Design Engineer',
+    year: '2021',
+    client: 'Lumen Cities',
+    tags: ['Data Viz', 'Storytelling', 'Public Sector'],
+    stack: ['Next.js', 'D3.js', 'Mapbox GL', 'Node.js'],
+    results: [
+      'Helped secure £48M in green investment within three months',
+      'Achieved WCAG 2.1 AA compliance across all interactive flows',
+      'Implemented live data sync from municipal APIs with failover strategies'
+    ],
+    link: { label: 'View interactive demo', href: '#' }
+  }
+];
+
 enum Tab {
   EDIT,
   EXPAND,
@@ -138,6 +258,7 @@ enum Tab {
   FLUX,
   VEO,
   MJ,
+  GROK,
 }
 
 interface HistoryState {
@@ -161,21 +282,60 @@ interface AssistantSuggestion {
 }
 
 // Premium Portfolio Landing Page Component
+const CONTACT_DETAILS = {
+  email: 'vidmantas@daugvila.lt',
+  phone: '+44 7900 123456',
+  location: 'London, United Kingdom',
+  responseTime: 'Within 24 hours',
+  linkedin: 'https://linkedin.com/in/vidmantas-daugvila',
+  github: 'https://github.com/vidmantas-daugvila',
+  twitter: 'https://twitter.com/vidmantas_dev'
+};
+
 const LandingPage: React.FC<{ onGetStarted: () => void }> = ({ onGetStarted }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
+  const [isContactOpen, setIsContactOpen] = useState(false);
+  const [contactStatus, setContactStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
+  const contactNameRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
     setIsVisible(true);
-    
+
     const handleScroll = () => {
       setScrollY(window.scrollY);
     };
-    
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (!isContactOpen) {
+      return;
+    }
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsContactOpen(false);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    if (contactNameRef.current) {
+      contactNameRef.current.focus();
+    }
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isContactOpen]);
 
   const navItems = [
     { label: 'Home', isActive: true },
@@ -185,17 +345,124 @@ const LandingPage: React.FC<{ onGetStarted: () => void }> = ({ onGetStarted }) =
     { label: 'Contact', isActive: false }
   ];
 
-  const handleNavClick = () => {
-    onGetStarted();
+  const handleNavClick = (label?: string) => {
+    if (label === 'Projects') {
+      const projectsSection = document.getElementById('projects');
+      if (projectsSection) {
+        projectsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      setIsMobileMenuOpen(false);
+      return;
+    }
+
+    if (label === 'About') {
+      const aboutSection = document.getElementById('about');
+      if (aboutSection) {
+        aboutSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      setIsMobileMenuOpen(false);
+      return;
+    }
+
+    if (label === 'Experience') {
+      const experienceSection = document.getElementById('experience');
+      if (experienceSection) {
+        experienceSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      setIsMobileMenuOpen(false);
+      return;
+    }
+
+    if (label === 'Contact') {
+      const contactSection = document.getElementById('contact');
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      setIsMobileMenuOpen(false);
+      return;
+    }
+
+    if (label === 'AI Tools') {
+      onGetStarted();
+      setIsMobileMenuOpen(false);
+      return;
+    }
+
     setIsMobileMenuOpen(false);
   };
 
+  const handleContactOpen = useCallback(() => {
+    setIsMobileMenuOpen(false);
+    setIsContactOpen(true);
+    setContactStatus('idle');
+  }, []);
+
+  const handleContactClose = useCallback(() => {
+    setIsContactOpen(false);
+    setContactStatus('idle');
+  }, []);
+
+  const handleContactSubmit = useCallback((event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formElement = event.currentTarget;
+    const formData = new FormData(formElement);
+    const name = (formData.get('name') as string | null)?.trim() ?? '';
+    const email = (formData.get('email') as string | null)?.trim() ?? '';
+    const company = (formData.get('company') as string | null)?.trim() ?? '';
+    const project = (formData.get('project') as string | null)?.trim() ?? '';
+
+    setContactStatus('submitting');
+
+    const subject = encodeURIComponent(
+      name ? `New project inquiry from ${name}` : 'New project inquiry from your portfolio'
+    );
+    const bodyLines = [
+      `Name: ${name || 'Not provided'}`,
+      `Email: ${email || 'Not provided'}`,
+      `Company / Brand: ${company || 'Not provided'}`,
+      '',
+      'Project details:',
+      project || 'No details provided yet.',
+      '',
+      'Submitted via portfolio contact form.'
+    ];
+
+    const body = encodeURIComponent(bodyLines.join('\n'));
+    const mailtoLink = `mailto:${CONTACT_DETAILS.email}?subject=${subject}&body=${body}`;
+
+    window.location.href = mailtoLink;
+
+    setTimeout(() => {
+      setContactStatus('success');
+      formElement.reset();
+    }, 400);
+  }, []);
+
   const skills = ['AI Development', 'Creative Coding', 'Full-Stack', 'UI/UX Design'];
   const stats = [
-    { label: 'Years Experience', value: '5+' },
-    { label: 'Projects Completed', value: '100+' },
-    { label: 'Happy Clients', value: '50+' }
+    { label: 'Years Experience', value: '3+' },
+    { label: 'Projects Completed', value: '10+' },
+    { label: 'Happy Clients', value: '10+' }
   ];
+  const projectCategories = useMemo(() => ['All', ...Array.from(new Set(PORTFOLIO_PROJECTS.map(project => project.category)))], []);
+  const [projectCategory, setProjectCategory] = useState<string>('All');
+  const [selectedProject, setSelectedProject] = useState<PortfolioProject | null>(PORTFOLIO_PROJECTS[0] ?? null);
+  const filteredProjects = useMemo(() => {
+    if (projectCategory === 'All') {
+      return PORTFOLIO_PROJECTS;
+    }
+    return PORTFOLIO_PROJECTS.filter(project => project.category === projectCategory);
+  }, [projectCategory]);
+
+  useEffect(() => {
+    if (!filteredProjects.length) {
+      setSelectedProject(null);
+      return;
+    }
+    if (!selectedProject || !filteredProjects.some(project => project.slug === selectedProject.slug)) {
+      setSelectedProject(filteredProjects[0]);
+    }
+  }, [filteredProjects, selectedProject]);
 
   return (
     <div className="landing-page portfolio-premium">
@@ -203,25 +470,29 @@ const LandingPage: React.FC<{ onGetStarted: () => void }> = ({ onGetStarted }) =
       <header className={`portfolio-header ${scrollY > 50 ? 'scrolled' : ''}`}>
         <div className="header-content">
           <div className="logo">
-            <span className="logo-text">VD</span>
+            <div className="logo-avatar">
+              <img src="/mephoto2.png" alt="Vidmantas portrait" className="logo-avatar-img" />
+              <div className="logo-avatar-border" aria-hidden="true"></div>
+            </div>
+            <span className="logo-text"></span>
           </div>
-          
+
           <nav className="header-nav desktop-only">
             {navItems.map(item => (
               <button
                 key={item.label}
                 className={`header-nav-item ${item.isActive ? 'active' : ''}`}
-                onClick={handleNavClick}
+                onClick={() => handleNavClick(item.label)}
               >
                 {item.label}
               </button>
             ))}
           </nav>
-          
-          <button className="header-cta desktop-only" onClick={onGetStarted}>
+
+          <button className="header-cta desktop-only" onClick={handleContactOpen}>
             Let's Talk
           </button>
-          
+
           <button
             type="button"
             className="mobile-menu-toggle mobile-only"
@@ -244,12 +515,12 @@ const LandingPage: React.FC<{ onGetStarted: () => void }> = ({ onGetStarted }) =
             <button
               key={item.label}
               className={`mobile-nav-item ${item.isActive ? 'active' : ''}`}
-              onClick={handleNavClick}
+              onClick={() => handleNavClick(item.label)}
             >
               {item.label}
             </button>
           ))}
-          <button className="mobile-cta" onClick={onGetStarted}>
+          <button className="mobile-cta" onClick={handleContactOpen}>
             Let's Talk
           </button>
         </nav>
@@ -265,14 +536,6 @@ const LandingPage: React.FC<{ onGetStarted: () => void }> = ({ onGetStarted }) =
 
         <div className="hero-container">
           <div className={`hero-content-premium ${isVisible ? 'animate-in' : ''}`}>
-            {/* Profile Image */}
-            <div className="hero-profile-image">
-              <div className="profile-image-wrapper">
-                <img src="/mephoto2.png" alt="Vidmantas Portfolio" className="profile-img" />
-                <div className="profile-image-border"></div>
-              </div>
-            </div>
-
             {/* Badge */}
             <div className="hero-badge-premium">
               <span className="badge-dot"></span>
@@ -283,13 +546,13 @@ const LandingPage: React.FC<{ onGetStarted: () => void }> = ({ onGetStarted }) =
             <h1 className="hero-title-premium">
               Hi, I'm <span className="gradient-text-premium">Vidmantas</span>
             </h1>
-            
+
             <h2 className="hero-subtitle-premium">
               AI Creative Developer
             </h2>
-            
+
             <p className="hero-description-premium">
-              Crafting intelligent digital experiences at the intersection of artificial intelligence 
+              Crafting intelligent digital experiences at the intersection of artificial intelligence
               and creative technology. Based in London, working globally.
             </p>
 
@@ -304,17 +567,13 @@ const LandingPage: React.FC<{ onGetStarted: () => void }> = ({ onGetStarted }) =
 
             {/* CTA Buttons */}
             <div className="hero-actions">
-              <button className="btn-primary-premium" onClick={onGetStarted}>
+              <button className="btn-primary-premium" onClick={() => handleNavClick('Projects')}>
                 <span>View My Work</span>
                 <ArrowRightIcon />
               </button>
-              <button className="btn-secondary-premium" onClick={onGetStarted}>
-                <span>Download CV</span>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                  <polyline points="7 10 12 15 17 10"/>
-                  <line x1="12" y1="15" x2="12" y2="3"/>
-                </svg>
+              <button className="btn-secondary-premium" onClick={handleContactOpen}>
+                <span>Let's Talk</span>
+                <SendIcon />
               </button>
             </div>
 
@@ -359,11 +618,581 @@ const LandingPage: React.FC<{ onGetStarted: () => void }> = ({ onGetStarted }) =
           <span>Scroll to explore</span>
           <div className="scroll-arrow">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M12 5v14M19 12l-7 7-7-7"/>
+              <path d="M12 5v14M19 12l-7 7-7-7" />
             </svg>
           </div>
         </div>
       </section>
+
+      {/* About Section */}
+      <section className="about-section" id="about">
+        <div className="about-container">
+          <div className="about-content">
+            <div className="about-text">
+              <span className="section-chip">About Me</span>
+              <h2>Crafting Digital Experiences with AI</h2>
+              <p className="about-lead">
+                I'm a creative developer passionate about building intelligent applications that push
+                the boundaries of what's possible with artificial intelligence and modern web technologies.
+              </p>
+
+              <div className="about-story">
+                <p>
+                  Based in London, I specialize in transforming complex AI capabilities into intuitive,
+                  user-friendly experiences. My work sits at the intersection of cutting-edge technology
+                  and thoughtful design, where innovation meets practicality.
+                </p>
+                <p>
+                  From AI-powered creative tools to full-stack applications, I focus on building solutions
+                  that not only work flawlessly but also delight users. Every project is an opportunity to
+                  explore new technologies, solve challenging problems, and create something meaningful.
+                </p>
+              </div>
+
+              <div className="about-highlights">
+                <div className="highlight-item">
+                  <div className="highlight-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <circle cx="12" cy="12" r="3" />
+                      <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3>AI Integration</h3>
+                    <p>Seamlessly integrating AI models into production applications</p>
+                  </div>
+                </div>
+
+                <div className="highlight-item">
+                  <div className="highlight-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                      <path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3>Full-Stack Development</h3>
+                    <p>Building scalable applications from frontend to backend</p>
+                  </div>
+                </div>
+
+                <div className="highlight-item">
+                  <div className="highlight-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                      <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                      <line x1="12" y1="22.08" x2="12" y2="12" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3>Creative Technology</h3>
+                    <p>Exploring innovative solutions at the edge of possibility</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="about-values">
+                <h3>What Drives Me</h3>
+                <ul className="values-list">
+                  <li>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                    <span>Building products that solve real problems</span>
+                  </li>
+                  <li>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                    <span>Writing clean, maintainable code</span>
+                  </li>
+                  <li>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                    <span>Continuous learning and experimentation</span>
+                  </li>
+                  <li>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                    <span>Collaborating with passionate teams</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="about-visual">
+              <div className="about-image-card">
+                <div className="about-image-wrapper">
+                  <div className="about-image-placeholder">
+                    <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                      <circle cx="12" cy="7" r="4" />
+                    </svg>
+                  </div>
+                </div>
+                <div className="about-stats-mini">
+                  <div className="stat-mini">
+                    <span className="stat-mini-value">3+</span>
+                    <span className="stat-mini-label">Years</span>
+                  </div>
+                  <div className="stat-mini">
+                    <span className="stat-mini-value">10+</span>
+                    <span className="stat-mini-label">Projects</span>
+                  </div>
+                  <div className="stat-mini">
+                    <span className="stat-mini-value">100%</span>
+                    <span className="stat-mini-label">Passion</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="about-quote">
+                <svg className="quote-icon" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z" />
+                </svg>
+                <p>
+                  "The best way to predict the future is to build it. I'm here to turn ambitious
+                  ideas into reality through code, creativity, and collaboration."
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Experience Section */}
+      <section className="experience-section" id="experience">
+        <div className="experience-container">
+          <div className="section-header">
+            <span className="section-chip">Experience</span>
+            <h2>Skills & Technologies</h2>
+          </div>
+
+          <div className="experience-grid">
+            {/* JavaScript */}
+            <div className="experience-card">
+              <div className="experience-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M3 3h18v18H3z" />
+                  <path d="M7.5 16.5c0 1.5 1 2 2.5 2s2.5-.5 2.5-2v-5" />
+                  <path d="M14 16.5c0 1.5 1 2 2.5 2s2.5-.5 2.5-2c0-1.5-1-2-2.5-2h-1c-1.5 0-2.5-.5-2.5-2s1-2 2.5-2 2.5.5 2.5 2" />
+                </svg>
+              </div>
+              <h3>JavaScript</h3>
+              <p>Building dynamic web applications with modern ES6+ features and async patterns</p>
+            </div>
+
+            {/* React */}
+            <div className="experience-card">
+              <div className="experience-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <circle cx="12" cy="12" r="3" />
+                  <ellipse cx="12" cy="12" rx="10" ry="4" />
+                  <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)" />
+                  <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)" />
+                </svg>
+              </div>
+              <h3>React</h3>
+              <p>Creating responsive UIs with hooks, context, and component-driven architecture</p>
+            </div>
+
+            {/* Python */}
+            <div className="experience-card">
+              <div className="experience-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" />
+                  <path d="M8 12h8M12 8v8" />
+                </svg>
+              </div>
+              <h3>Python</h3>
+              <p>Developing backend services, data processing, and AI integrations</p>
+            </div>
+
+            {/* TypeScript */}
+            <div className="experience-card">
+              <div className="experience-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <rect x="3" y="3" width="18" height="18" rx="2" />
+                  <path d="M12 8v8M8 12h8" />
+                </svg>
+              </div>
+              <h3>TypeScript</h3>
+              <p>Writing type-safe code for scalable and maintainable applications</p>
+            </div>
+
+            {/* Node.js */}
+            <div className="experience-card">
+              <div className="experience-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                  <path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
+                </svg>
+              </div>
+              <h3>Node.js</h3>
+              <p>Building server-side applications and RESTful APIs</p>
+            </div>
+
+            {/* AI/ML */}
+            <div className="experience-card">
+              <div className="experience-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <circle cx="12" cy="12" r="3" />
+                  <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
+                </svg>
+              </div>
+              <h3>AI Integration</h3>
+              <p>Integrating AI models and APIs for creative applications</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="portfolio-projects-section" id="projects">
+        <div className="projects-heading">
+          <span className="projects-chip">Featured Work</span>
+          <h2>Projects that blend intelligent systems with crafted experiences.</h2>
+          <p>
+            From rapid AI tooling to large-scale installations, each project is built with an obsession for detail,
+            measurable outcomes, and inclusive design.
+          </p>
+        </div>
+
+        <div className="projects-shell">
+          <div className="projects-library">
+            <div className="projects-filter">
+              {projectCategories.map(category => (
+                <button
+                  key={category}
+                  type="button"
+                  className={`projects-filter-btn ${projectCategory === category ? 'active' : ''}`}
+                  onClick={() => setProjectCategory(category)}
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
+
+            <div className="projects-grid">
+              {filteredProjects.map(project => {
+                const isActive = selectedProject?.slug === project.slug;
+                return (
+                  <button
+                    key={project.slug}
+                    type="button"
+                    className={`project-card ${isActive ? 'active' : ''}`}
+                    onClick={() => setSelectedProject(project)}
+                  >
+                    <div
+                      className="project-card-cover"
+                      style={{ backgroundImage: `linear-gradient(135deg, rgba(20,21,31,0.6), rgba(20,21,31,0.2)), url(${project.cover})` }}
+                    />
+                    <div className="project-card-body">
+                      <div className="project-card-meta">
+                        <span>{project.year}</span>
+                        <span>{project.category}</span>
+                      </div>
+                      <h3>{project.title}</h3>
+                      <p>{project.tagline}</p>
+                      <div className="project-card-tags">
+                        {project.tags.map(tag => (
+                          <span key={tag} className="project-card-tag">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          <aside className={`project-detail-panel ${selectedProject ? '' : 'empty'}`}>
+            {selectedProject ? (
+              <>
+                <div
+                  className="project-detail-cover"
+                  style={{ backgroundImage: `linear-gradient(135deg, rgba(8,9,14,0.8), rgba(8,9,14,0.2)), url(${selectedProject.cover})` }}
+                  aria-hidden="true"
+                />
+                <div className="project-detail-body">
+                  <span className="project-detail-label">
+                    {selectedProject.year} • {selectedProject.category}
+                  </span>
+                  <h3 className="project-detail-title">{selectedProject.title}</h3>
+                  <p className="project-detail-description">{selectedProject.description}</p>
+
+                  <div className="project-detail-meta">
+                    <div>
+                      <span>Role</span>
+                      <strong>{selectedProject.role}</strong>
+                    </div>
+                    <div>
+                      <span>Client</span>
+                      <strong>{selectedProject.client}</strong>
+                    </div>
+                  </div>
+
+                  <div className="project-detail-stack">
+                    {selectedProject.stack.map(stackItem => (
+                      <span key={stackItem}>{stackItem}</span>
+                    ))}
+                  </div>
+
+                  <ul className="project-detail-results">
+                    {selectedProject.results.map(result => (
+                      <li key={result}>{result}</li>
+                    ))}
+                  </ul>
+
+                  {selectedProject.link && (
+                    <a
+                      className="project-detail-link"
+                      href={selectedProject.link.href}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {selectedProject.link.label}
+                      <ArrowRightIcon />
+                    </a>
+                  )}
+                </div>
+              </>
+            ) : (
+              <div className="project-detail-body">
+                <h3 className="project-detail-title">Select a project</h3>
+                <p className="project-detail-description">
+                  Choose a project card to see the story behind it, the technical stack, and the measurable outcomes.
+                </p>
+              </div>
+            )}
+          </aside>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section className="contact-section" id="contact">
+        <div className="contact-section-container">
+          <div className="contact-section-header">
+            <span className="section-chip">Get In Touch</span>
+            <h2>Let's Build Something Amazing</h2>
+            <p>
+              Have a project in mind? Whether it's AI integration, creative development, or a full-stack application,
+              I'm here to help bring your vision to life.
+            </p>
+          </div>
+
+          <div className="contact-section-content">
+            {/* Contact Info Cards */}
+            <div className="contact-info-grid">
+              <div className="contact-info-card">
+                <div className="contact-info-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                    <polyline points="22,6 12,13 2,6" />
+                  </svg>
+                </div>
+                <h3>Email</h3>
+                <a href={`mailto:${CONTACT_DETAILS.email}`} className="contact-info-link">
+                  {CONTACT_DETAILS.email}
+                </a>
+              </div>
+
+              <div className="contact-info-card">
+                <div className="contact-info-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                  </svg>
+                </div>
+                <h3>Phone</h3>
+                <a href={`tel:${CONTACT_DETAILS.phone.replace(/\s+/g, '')}`} className="contact-info-link">
+                  {CONTACT_DETAILS.phone}
+                </a>
+              </div>
+
+              <div className="contact-info-card">
+                <div className="contact-info-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                </div>
+                <h3>Location</h3>
+                <p className="contact-info-text">{CONTACT_DETAILS.location}</p>
+              </div>
+
+              <div className="contact-info-card">
+                <div className="contact-info-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <circle cx="12" cy="12" r="10" />
+                    <polyline points="12 6 12 12 16 14" />
+                  </svg>
+                </div>
+                <h3>Response Time</h3>
+                <p className="contact-info-text">{CONTACT_DETAILS.responseTime}</p>
+              </div>
+            </div>
+
+            {/* CTA and Social Links */}
+            <div className="contact-section-cta">
+              <button className="btn-contact-primary" onClick={handleContactOpen}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <line x1="22" y1="2" x2="11" y2="13" />
+                  <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                </svg>
+                <span>Send Me a Message</span>
+              </button>
+
+              <div className="contact-social-links">
+                <span className="contact-social-label">Or connect with me on:</span>
+                <div className="contact-social-icons">
+                  <a href={CONTACT_DETAILS.linkedin} target="_blank" rel="noopener noreferrer" className="contact-social-icon" title="LinkedIn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                    </svg>
+                  </a>
+                  <a href={CONTACT_DETAILS.github} target="_blank" rel="noopener noreferrer" className="contact-social-icon" title="GitHub">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                    </svg>
+                  </a>
+                  <a href={CONTACT_DETAILS.twitter} target="_blank" rel="noopener noreferrer" className="contact-social-icon" title="Twitter">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {isContactOpen && (
+        <div
+          className="contact-overlay"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="contact-dialog-title"
+          onClick={handleContactClose}
+        >
+          <div className="contact-panel" onClick={event => event.stopPropagation()}>
+            <button
+              type="button"
+              className="contact-close"
+              onClick={handleContactClose}
+              aria-label="Close contact panel"
+            >
+              <ClearIcon />
+            </button>
+
+            <div className="contact-panel-info">
+              <span className="contact-chip">Let’s connect</span>
+              <h2 className="contact-title" id="contact-dialog-title">
+                Tell me about your next big idea
+              </h2>
+              <p className="contact-lead">
+                Share a few details about your project and I’ll get back to you with ideas, timelines,
+                and a tailored plan to make it happen.
+              </p>
+
+              <div className="contact-meta">
+                <div className="contact-meta-item">
+                  <span className="contact-meta-label">Email</span>
+                  <a href={`mailto:${CONTACT_DETAILS.email}`} className="contact-meta-value">
+                    {CONTACT_DETAILS.email}
+                  </a>
+                </div>
+                <div className="contact-meta-item">
+                  <span className="contact-meta-label">Phone</span>
+                  <a href={`tel:${CONTACT_DETAILS.phone.replace(/\s+/g, '')}`} className="contact-meta-value">
+                    {CONTACT_DETAILS.phone}
+                  </a>
+                </div>
+                <div className="contact-meta-item">
+                  <span className="contact-meta-label">Location</span>
+                  <span className="contact-meta-value">{CONTACT_DETAILS.location}</span>
+                </div>
+                <div className="contact-meta-item">
+                  <span className="contact-meta-label">Response time</span>
+                  <span className="contact-meta-value">{CONTACT_DETAILS.responseTime}</span>
+                </div>
+              </div>
+
+              <div className="contact-availability">
+                <p>
+                  🌍 Currently partnering with teams worldwide on AI-driven experiences, creative tooling,
+                  and premium digital products.
+                </p>
+              </div>
+            </div>
+
+            <form className="contact-form" onSubmit={handleContactSubmit}>
+              <div className="contact-form-grid">
+                <label className="contact-field">
+                  <span>Name</span>
+                  <input
+                    ref={contactNameRef}
+                    type="text"
+                    name="name"
+                    placeholder="Your name"
+                    autoComplete="name"
+                    required
+                  />
+                </label>
+                <label className="contact-field">
+                  <span>Email</span>
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="you@example.com"
+                    autoComplete="email"
+                    required
+                  />
+                </label>
+                <label className="contact-field">
+                  <span>Company / Brand</span>
+                  <input
+                    type="text"
+                    name="company"
+                    placeholder="Optional"
+                    autoComplete="organization"
+                  />
+                </label>
+                <label className="contact-field contact-field-full">
+                  <span>Project vision</span>
+                  <textarea
+                    name="project"
+                    placeholder="Give me a glimpse of what you want to build together..."
+                    rows={5}
+                    required
+                  />
+                </label>
+              </div>
+
+              <button
+                type="submit"
+                className="contact-submit"
+                disabled={contactStatus === 'submitting'}
+              >
+                {contactStatus === 'submitting' ? 'Sending…' : 'Send Message'}
+              </button>
+
+              {contactStatus === 'success' && (
+                <p className="contact-success">
+                  Thanks for reaching out — check your email client to finish sending the message. I’ll reply soon!
+                </p>
+              )}
+
+              <p className="contact-policy">
+                By sharing your details you agree to be contacted about this inquiry. No spam, ever.
+              </p>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
@@ -472,6 +1301,15 @@ const App: React.FC = () => {
   const [mjVideoBatchSize, setMjVideoBatchSize] = useState<1 | 2 | 4>(1);
   const [mjMotion, setMjMotion] = useState<'high' | 'low'>('high');
   const [mjGeneratedImages, setMjGeneratedImages] = useState<{ id: string, url: string, taskId: string }[]>([]);
+
+  // Grok State
+  const [grokPrompt, setGrokPrompt] = useState<string>('');
+  const [grokAspectRatio, setGrokAspectRatio] = useState<'2:3' | '3:2' | '1:1'>('3:2');
+  const [grokCallbackUrl, setGrokCallbackUrl] = useState<string>('');
+  const [grokTaskId, setGrokTaskId] = useState<string | null>(null);
+  const [grokTaskState, setGrokTaskState] = useState<'idle' | 'waiting' | 'success' | 'fail'>('idle');
+  const [grokGeneratedImages, setGrokGeneratedImages] = useState<{ id: string, url: string, taskId: string }[]>([]);
+  const [selectedGrokImageUrl, setSelectedGrokImageUrl] = useState<string | null>(null);
 
   useEffect(() => {
     if (veoAspectRatio === '9:16' && veoResolution === '1080p') {
@@ -1759,6 +2597,223 @@ const App: React.FC = () => {
     }
   }, [mjTaskType, mjPrompt, mjSpeed, mjInputImage, mjAspectRatio, mjVersion, mjVariety, mjStylization, mjWeirdness, mjOmniIntensity, mjWatermark, mjEnableTranslation, mjCallbackUrl, mjVideoBatchSize, mjMotion, currentImage, addToHistory]);
 
+  // --- GROK Generation Functions ---
+  const handleGrokGenerate = useCallback(async () => {
+    if (!grokPrompt.trim()) {
+      setError('A prompt is required for Grok generation.');
+      return;
+    }
+
+    if (!process.env.KIE_API_KEY) {
+      setError('KIE API key is required for Grok generation. Please add KIE_API_KEY to your .env.local file.');
+      return;
+    }
+
+    setIsLoading(true);
+    setError(null);
+    setLoadingMessage('Generating with Grok Imagine...');
+    setGrokTaskId(null);
+    setGrokTaskState('idle');
+
+    try {
+      const requestBody: Record<string, any> = {
+        model: 'grok-imagine/text-to-image',
+        input: {
+          prompt: grokPrompt.trim(),
+          aspect_ratio: grokAspectRatio,
+        },
+      };
+
+      if (grokCallbackUrl.trim()) {
+        requestBody.callBackUrl = grokCallbackUrl.trim();
+      }
+
+      console.log('Sending Grok request:', requestBody);
+
+      const response = await fetch('https://api.kie.ai/api/v1/jobs/createTask', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${process.env.KIE_API_KEY}`,
+        },
+        body: JSON.stringify(requestBody),
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text().catch(() => '');
+        let errorData: any = {};
+        try {
+          errorData = JSON.parse(errorText);
+        } catch (e) {
+          // Not JSON, ignore
+        }
+
+        console.error('Grok API error response:', response.status, errorData);
+        throw new Error(`Grok API error: ${response.status} - ${errorData.msg || errorData.message || errorText || response.statusText}`);
+      }
+
+      const result = await response.json();
+
+      if (result.code !== 200) {
+        console.error('Grok API error result:', result);
+        throw new Error(`Grok API error: ${result.code} - ${result.msg || 'Unknown error'}`);
+      }
+
+      const taskId = result?.data?.taskId;
+      if (!taskId) {
+        throw new Error('No task ID returned from Grok API.');
+      }
+
+      setGrokTaskId(taskId);
+      setGrokTaskState('waiting');
+      setLoadingMessage(`Task ${taskId} submitted, waiting for results...`);
+      console.log(`Grok task submitted successfully. Task ID: ${taskId}`);
+
+      // Poll for results
+      await pollGrokTask(taskId);
+    } catch (err) {
+      console.error('Grok generation error:', err);
+      const errorMessage = err instanceof Error ? err.message : 'Grok image generation failed.';
+      setGrokTaskState('fail');
+      setError(errorMessage);
+    } finally {
+      setIsLoading(false);
+      setLoadingMessage('');
+    }
+  }, [grokPrompt, grokAspectRatio, grokCallbackUrl]);
+
+  const pollGrokTask = useCallback(async (taskId: string) => {
+    const maxAttempts = 60;
+    const delayMs = 5000;
+
+    for (let attempt = 0; attempt < maxAttempts; attempt++) {
+      if (attempt > 0) {
+        await new Promise(resolve => setTimeout(resolve, delayMs));
+      }
+
+      try {
+        const statusResponse = await fetch(`https://api.kie.ai/api/v1/jobs/recordInfo?taskId=${encodeURIComponent(taskId)}`, {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${process.env.KIE_API_KEY}`,
+          }
+        });
+
+        if (!statusResponse.ok) {
+          console.warn(`Status check failed (${statusResponse.status}). Retrying...`);
+          continue;
+        }
+
+        const statusResult = await statusResponse.json().catch(() => null);
+        if (!statusResult || statusResult.code !== 200) {
+          console.warn('Invalid status response. Retrying...');
+          continue;
+        }
+
+        const taskData = statusResult.data;
+        if (!taskData) {
+          console.warn('Status response missing data. Retrying...');
+          continue;
+        }
+
+        const state: string = taskData.state;
+        setLoadingMessage(`Task ${state}... (${attempt + 1} / ${maxAttempts})`);
+
+        if (state === 'success') {
+          setGrokTaskState('success');
+          setLoadingMessage('Grok generation complete.');
+
+          let parsedResult: any = null;
+          if (taskData.resultJson) {
+            try {
+              parsedResult = typeof taskData.resultJson === 'string'
+                ? JSON.parse(taskData.resultJson)
+                : taskData.resultJson;
+            } catch (jsonError) {
+              console.warn('Failed to parse resultJson for Grok task:', jsonError);
+            }
+          }
+
+          const resultUrls: string[] = Array.isArray(parsedResult?.resultUrls) ? parsedResult.resultUrls : [];
+          if (resultUrls.length > 0) {
+            const timestamp = Date.now();
+            const newImages = resultUrls.map((url, index) => ({
+              id: `grok_${timestamp}_${index}`,
+              url,
+              taskId
+            }));
+            setGrokGeneratedImages(prev => [...newImages, ...prev]);
+            const firstUrl = resultUrls[0] || selectedGrokImageUrl;
+            setSelectedGrokImageUrl(firstUrl || null);
+
+            // Add first image to history
+            if (firstUrl) {
+              const img = new Image();
+              img.crossOrigin = 'anonymous';
+              img.onload = () => {
+                const canvas = document.createElement('canvas');
+                canvas.width = img.width;
+                canvas.height = img.height;
+                const ctx = canvas.getContext('2d');
+                if (ctx) {
+                  ctx.drawImage(img, 0, 0);
+                  const dataUrl = canvas.toDataURL();
+                  addToHistory(dataUrl);
+                }
+              };
+              img.src = firstUrl;
+            }
+            console.log('Grok images generated successfully:', resultUrls);
+            return;
+          } else {
+            throw new Error('No result URLs found in response.');
+          }
+        }
+
+        if (state === 'fail') {
+          const failureMessage = taskData.failMsg || `Task failed${taskData.failCode ? ` (${taskData.failCode})` : ''}.`;
+          setGrokTaskState('fail');
+          throw new Error(failureMessage);
+        }
+
+        setGrokTaskState('waiting');
+      } catch (pollError) {
+        console.warn(`Error polling Grok task status (attempt ${attempt + 1}/${maxAttempts}):`, pollError);
+        if (pollError instanceof Error && pollError.message.includes('Task failed')) {
+          throw pollError;
+        }
+      }
+    }
+
+    setGrokTaskState('fail');
+    throw new Error(`Timed out waiting for Grok results after ${maxAttempts * delayMs / 1000} seconds. Task ID: ${taskId}. Check your KIE.ai dashboard.`);
+  }, [addToHistory, setError, setSelectedGrokImageUrl]);
+
+  const handleGrokImageSelect = useCallback((imageUrl: string) => {
+    setSelectedGrokImageUrl(imageUrl);
+
+    const imgElement = new Image();
+    imgElement.crossOrigin = 'anonymous';
+    imgElement.onload = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = imgElement.width;
+      canvas.height = imgElement.height;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) {
+        setError('Unable to process the selected image.');
+        return;
+      }
+      ctx.drawImage(imgElement, 0, 0);
+      const dataUrl = canvas.toDataURL();
+      addToHistory(dataUrl);
+      setError(null);
+    };
+    imgElement.onerror = () => {
+      setError('Failed to load the selected Grok image. Please try again.');
+    };
+    imgElement.src = imageUrl;
+  }, [addToHistory, setError, setSelectedGrokImageUrl]);
+
   const handleMjImageUpload = (file: File) => {
     const reader = new FileReader();
     reader.onload = (e) => {
@@ -2567,6 +3622,111 @@ const App: React.FC = () => {
           </div>
         );
 
+      case Tab.GROK:
+        return (
+          <div className="control-group">
+            <h2>Grok Imagine</h2>
+            <p className="prompt-context-info">Generate images using xAI's Grok Imagine text-to-image model.</p>
+
+            <div className="control-subgroup">
+              <label htmlFor="grok-prompt">Prompt</label>
+              <textarea
+                id="grok-prompt"
+                className="prompt-textarea"
+                placeholder="Cinematic portrait of a woman sitting by a vinyl record player, retro living room background..."
+                value={grokPrompt}
+                onChange={(e) => setGrokPrompt(e.target.value)}
+                rows={4}
+                maxLength={5000}
+              />
+              <p className="prompt-context-info" style={{ marginTop: '4px' }}>
+                Maximum 5000 characters
+              </p>
+            </div>
+
+            <div className="control-subgroup">
+              <label>Aspect Ratio</label>
+              <div className="segmented-control">
+                <button className={`segmented-control-btn ${grokAspectRatio === '2:3' ? 'active' : ''}`} onClick={() => setGrokAspectRatio('2:3')}>2:3</button>
+                <button className={`segmented-control-btn ${grokAspectRatio === '3:2' ? 'active' : ''}`} onClick={() => setGrokAspectRatio('3:2')}>3:2</button>
+                <button className={`segmented-control-btn ${grokAspectRatio === '1:1' ? 'active' : ''}`} onClick={() => setGrokAspectRatio('1:1')}>1:1</button>
+              </div>
+            </div>
+
+            <div className="control-subgroup">
+              <label htmlFor="grok-callback">Callback URL (Optional)</label>
+              <input
+                id="grok-callback"
+                type="url"
+                placeholder="https://your-domain.com/api/callback"
+                value={grokCallbackUrl}
+                onChange={(e) => setGrokCallbackUrl(e.target.value)}
+              />
+              <p className="prompt-context-info" style={{ marginTop: '4px' }}>
+                If provided, KIE.ai will POST the final task payload to this URL when the job completes.
+              </p>
+            </div>
+
+            {grokTaskId && (
+              <div className="flux-status-section">
+                <div><strong>Task ID:</strong> {grokTaskId}</div>
+                <div><strong>Status:</strong> {grokTaskState.charAt(0).toUpperCase() + grokTaskState.slice(1)}</div>
+              </div>
+            )}
+
+            {grokGeneratedImages.length > 0 && (
+              <div className="flux-generated-images">
+                <h3>Generated Images</h3>
+                <p className="prompt-context-info" style={{ marginTop: '4px' }}>
+                  Thumbnails stay small here. Click one to load it into the editor or open fullscreen.
+                </p>
+                <div className="grok-thumbnails-grid">
+                  {grokGeneratedImages.map((img) => {
+                    const isSelected = selectedGrokImageUrl === img.url;
+                    return (
+                      <div key={img.id} className="grok-thumbnail-item">
+                        <button
+                          type="button"
+                          className={`grok-thumbnail-button${isSelected ? ' selected' : ''}`}
+                          onClick={() => handleGrokImageSelect(img.url)}
+                          title={isSelected ? 'Selected' : 'Use in editor'}
+                        >
+                          <img src={img.url} alt="Grok generated thumbnail" />
+                        </button>
+                        <div className="grok-thumbnail-actions">
+                          <button
+                            className="btn btn-ghost"
+                            onClick={() => setFullscreenImage(img.url)}
+                            title="View Fullscreen"
+                          >
+                            <ExpandIcon />
+                          </button>
+                          <button
+                            className="btn btn-ghost"
+                            onClick={() => {
+                              const link = document.createElement('a');
+                              link.href = img.url;
+                              link.download = `grok-${img.id}.png`;
+                              link.click();
+                            }}
+                            title="Download"
+                          >
+                            <DownloadIcon />
+                          </button>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            <button className="btn btn-primary" onClick={handleGrokGenerate} disabled={isLoading || !grokPrompt.trim()}>
+              {isLoading ? <><div className="spinner-small" /> Generating...</> : 'Generate with Grok'}
+            </button>
+          </div>
+        );
+
       case Tab.VEO:
         return (
           <div className="control-group">
@@ -2883,7 +4043,7 @@ const App: React.FC = () => {
   };
 
   // Tabs that don't require an image to function
-  const tabsWithoutImageRequirement = [Tab.FLUX, Tab.MJ, Tab.VEO, Tab.STORY, Tab.EDIT];
+  const tabsWithoutImageRequirement = [Tab.FLUX, Tab.MJ, Tab.GROK, Tab.VEO, Tab.STORY, Tab.EDIT];
   const canWorkWithoutImage = tabsWithoutImageRequirement.includes(activeTab);
 
   const handleStartWithoutImage = (tab: Tab) => {
@@ -2942,6 +4102,7 @@ const App: React.FC = () => {
           </button>
           <button className={`tab-button ${activeTab === Tab.FLUX ? 'active' : ''}`} onClick={() => handleTabSwitch(Tab.FLUX)}><FluxIcon /><span>Flux</span></button>
           <button className={`tab-button ${activeTab === Tab.MJ ? 'active' : ''}`} onClick={() => handleTabSwitch(Tab.MJ)}><MjIcon /><span>MJ</span></button>
+          <button className={`tab-button ${activeTab === Tab.GROK ? 'active' : ''}`} onClick={() => handleTabSwitch(Tab.GROK)}><GrokIcon /><span>Grok</span></button>
           <button className={`tab-button ${activeTab === Tab.VEO ? 'active' : ''}`} onClick={() => setActiveTab(Tab.VEO)}><VideoIcon /><span>VEO</span></button>
         </nav>
         <aside className="control-panel">

@@ -18,5 +18,6 @@ View your app in AI Studio: https://ai.studio/
 2. Set the API keys in [.env.local](.env.local):
    - `GEMINI_API_KEY`: Your Gemini API key for main image editing features
    - `KIE_API_KEY`: Your KIE.ai API key for Flux Kontext model (get it from https://kie.ai)
+   - `IMGBB_API_KEY`: Your ImgBB API key for hosting uploaded images during video generation (get it from https://api.imgbb.com/)
 3. Run the app:
    `npm run dev`
